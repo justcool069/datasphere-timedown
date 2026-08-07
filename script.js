@@ -5,8 +5,6 @@ let timerInterval = null;
 let isRunning = false;
 
 // DOM Elements
-const beginBtn = document.getElementById('begin-btn');
-const resetBtn = document.getElementById('reset-btn');
 const timerCard = document.getElementById('timer-card');
 const headerStatus = document.getElementById('header-status');
 const statusText = document.getElementById('status-text');
@@ -18,24 +16,17 @@ const secondsEl = document.getElementById('seconds');
 const progressFill = document.getElementById('progress-fill');
 const elapsedPercentageEl = document.getElementById('elapsed-percentage');
 
-// Target calculation: Start Today 11:00 AM to Next Day 11:00 AM
+// Target calculation: Start 07/08/2026 11:00 AM to Next Day 08/08/2026 11:00 AM
 function calculateRemainingSeconds() {
     const now = new Date();
     
-    // Set target to today at 11:00:00 AM
-    let target = new Date();
-    target.setHours(11, 0, 0, 0);
-    
-    // If the current time is already past today's 11:00 AM, the end target is tomorrow 11:00 AM
-    if (now >= target) {
-        target.setDate(target.getDate() + 1);
-    }
+    // Set target specifically to August 8, 2026 at 11:00:00 AM
+    let target = new Date(2026, 7, 8, 11, 0, 0, 0); // Month is 0-indexed, so 7 is August
     
     const diffMs = target - now;
     const diffSeconds = Math.max(0, Math.floor(diffMs / 1000));
     
-    // Cap at 24 hours just in case
-    return Math.min(TOTAL_SECONDS, diffSeconds);
+    return diffSeconds;
 }
 
 // Initialize Display
@@ -59,25 +50,29 @@ function updateDisplay() {
         hoursBadge.textContent = `${hours} HOURS LEFT`;
     }
 
-    // Progress percentage (starts at 100% and goes to 0%)
-    const pct = (remainingSeconds / TOTAL_SECONDS) * 100;
+    // Progress percentage relative to 24 hours total limit
+    const pct = Math.min(100, Math.max(0, (remainingSeconds / TOTAL_SECONDS) * 100));
     progressFill.style.width = `${pct}%`;
     elapsedPercentageEl.textContent = `${pct.toFixed(1)}% REMAINING`;
 }
 
-// Start / Pause Timer Toggle
-function startTimer() {
-    if (isRunning) return;
-
+// Automatically Start Timer
+function startTimerAuto() {
     remainingSeconds = calculateRemainingSeconds();
     updateDisplay();
+
+    if (remainingSeconds <= 0) {
+        statusText.textContent = 'STATUS: TIME UP!';
+        hoursBadge.textContent = '0 HOURS LEFT';
+        timerCard.classList.remove('active');
+        headerStatus.classList.remove('running');
+        return;
+    }
 
     isRunning = true;
     timerCard.classList.add('active');
     headerStatus.classList.add('running');
     statusText.textContent = 'STATUS: HACKATHON LIVE';
-    beginBtn.classList.add('hidden');
-    resetBtn.classList.remove('hidden');
 
     timerInterval = setInterval(() => {
         if (remainingSeconds > 0) {
@@ -88,31 +83,15 @@ function startTimer() {
             isRunning = false;
             statusText.textContent = 'STATUS: TIME UP!';
             hoursBadge.textContent = '0 HOURS LEFT';
+            timerCard.classList.remove('active');
+            headerStatus.classList.remove('running');
             alert('🎉 Time is Up! The 24-Hour Datathon has concluded!');
         }
     }, 1000);
 }
 
-// Reset Timer
-function resetTimer() {
-    clearInterval(timerInterval);
-    isRunning = false;
-    remainingSeconds = TOTAL_SECONDS;
-    updateDisplay();
-
-    timerCard.classList.remove('active');
-    headerStatus.classList.remove('running');
-    statusText.textContent = 'STATUS: STANDBY';
-    beginBtn.classList.remove('hidden');
-    resetBtn.classList.add('hidden');
-}
-
-// Event Listeners
-beginBtn.addEventListener('click', startTimer);
-resetBtn.addEventListener('click', resetTimer);
-
-// Initial display render
-updateDisplay();
+// Automatically trigger start
+startTimerAuto();
 
 /* ===================================================
    BACKGROUND CANVAS PARTICLES & DATASTREAM ANIMATION
