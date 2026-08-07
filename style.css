@@ -471,6 +471,100 @@ body {
     color: var(--text-muted);
 }
 
+/* Live Current Time Row */
+.live-time-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    border-radius: 12px;
+    padding: 0.7rem 1.2rem;
+    margin-bottom: 1.8rem;
+}
+
+.live-time-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+}
+
+.live-time-value {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--blue-primary);
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+/* Event Range Timeline */
+.event-range {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 1.5rem 0 2rem;
+    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+}
+
+.event-time-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.event-time-item:last-child {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.event-time-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.start-dot {
+    background: var(--yellow-primary);
+    box-shadow: 0 0 12px var(--yellow-primary);
+}
+
+.end-dot {
+    background: var(--blue-primary);
+    box-shadow: 0 0 12px var(--blue-primary);
+}
+
+.event-range-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--yellow-primary), var(--blue-primary));
+    margin: 0 0.8rem;
+    border-radius: 2px;
+    opacity: 0.5;
+}
+
+.event-time-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    margin-bottom: 0.2rem;
+}
+
+.event-time-val {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
 /* Features Grid */
 .features-grid {
     display: grid;

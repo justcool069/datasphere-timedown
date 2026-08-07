@@ -15,6 +15,20 @@ const minutesEl = document.getElementById('minutes');
 const secondsEl = document.getElementById('seconds');
 const progressFill = document.getElementById('progress-fill');
 const elapsedPercentageEl = document.getElementById('elapsed-percentage');
+const liveClockEl = document.getElementById('live-clock');
+
+// Live Clock Ticker
+function updateLiveClock() {
+    const now = new Date();
+    let h = now.getHours();
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    liveClockEl.textContent = `${String(h).padStart(2, '0')}:${m}:${s} ${ampm}`;
+}
+updateLiveClock();
+setInterval(updateLiveClock, 1000);
 
 // Target calculation: Start 07/08/2026 11:00 AM to Next Day 08/08/2026 11:00 AM
 function calculateRemainingSeconds() {

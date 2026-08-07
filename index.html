@@ -53,6 +53,12 @@
                     <div class="hours-badge" id="hours-left-badge">24 HOURS LEFT</div>
                 </div>
 
+                <!-- Live Current Time -->
+                <div class="live-time-row">
+                    <span class="live-time-label">🕐 CURRENT TIME</span>
+                    <span class="live-time-value" id="live-clock">--:--:-- --</span>
+                </div>
+
                 <div class="countdown-grid">
                     <!-- Hours -->
                     <div class="time-block">
@@ -79,37 +85,39 @@
                     </div>
                 </div>
 
+                <!-- Event Time Range -->
+                <div class="event-range">
+                    <div class="event-time-item">
+                        <span class="event-time-dot start-dot"></span>
+                        <div>
+                            <div class="event-time-label">DATATHON STARTS</div>
+                            <div class="event-time-val">Aug 7, 2026 — 11:00 AM</div>
+                        </div>
+                    </div>
+                    <div class="event-range-line"></div>
+                    <div class="event-time-item">
+                        <span class="event-time-dot end-dot"></span>
+                        <div>
+                            <div class="event-time-label">DATATHON ENDS</div>
+                            <div class="event-time-val">Aug 8, 2026 — 11:00 AM</div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Progress Bar -->
                 <div class="progress-container">
                     <div class="progress-bar-bg">
                         <div class="progress-bar-fill" id="progress-fill" style="width: 100%;"></div>
                     </div>
                     <div class="progress-labels">
-                        <span>24:00:00 START</span>
+                        <span>7 AUG 11:00 AM</span>
                         <span id="elapsed-percentage">100% REMAINING</span>
-                        <span>00:00:00 FINISH</span>
+                        <span>8 AUG 11:00 AM</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Datathon Info Cards / Guidelines Grid -->
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Dataset Access</h3>
-                    <p>Clean raw datasets, engineer features, and explore data visual metrics.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>Model Development</h3>
-                    <p>Train deep neural networks or ensemble trees under strict time constraints.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Live Leaderboard</h3>
-                    <p>Submit predictions to score evaluate accuracy metrics before the 24h deadline.</p>
-                </div>
-            </div>
+
         </main>
 
         <footer class="footer">
