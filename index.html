@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATATHON 2026 | 24-Hour Hackathon Countdown</title>
+    <meta name="description" content="Official 24-Hour Datathon Live Countdown Timer & Hackathon Portal">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Particle Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Glowing Background Orbs & Grid -->
+    <div class="grid-overlay"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <div class="app-container">
+        <!-- Header / Navbar -->
+        <header class="header">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <div class="brand-text">DATA<span>THON</span> <span class="badge">2026</span></div>
+            </div>
+            <div class="header-status" id="header-status">
+                <span class="status-dot"></span>
+                <span id="status-text">STATUS: STANDBY</span>
+            </div>
+        </header>
+
+        <!-- Hero Content -->
+        <main class="main-content">
+            <div class="hero-tag">⚡ 24-HOUR DATA SCIENCE CHALLENGE</div>
+            <h1 class="title">PUSH THE BOUNDARIES OF <span class="highlight">DATA & AI</span></h1>
+            <p class="subtitle">Welcome Innovator! Hit the trigger button below to start your 24-hour hackathon countdown. Transform complex data into winning models before time runs out!</p>
+
+            <!-- Control Button -->
+            <div class="action-section">
+                <button id="begin-btn" class="glow-btn">
+                    <span class="btn-glow-bg"></span>
+                    <span class="btn-content">
+                        <svg class="play-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        LET'S BEGIN
+                    </span>
+                </button>
+                <button id="reset-btn" class="secondary-btn hidden">RESET TIMER</button>
+            </div>
+
+            <!-- Countdown Timer Panel -->
+            <div class="timer-card" id="timer-card">
+                <div class="card-header">
+                    <span class="card-title">LIVE COUNTDOWN</span>
+                    <div class="hours-badge" id="hours-left-badge">24 HOURS LEFT</div>
+                </div>
+
+                <div class="countdown-grid">
+                    <!-- Hours -->
+                    <div class="time-block">
+                        <div class="time-val-wrapper">
+                            <span class="time-val" id="hours">24</span>
+                        </div>
+                        <span class="time-label">HOURS</span>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <!-- Minutes -->
+                    <div class="time-block">
+                        <div class="time-val-wrapper">
+                            <span class="time-val" id="minutes">00</span>
+                        </div>
+                        <span class="time-label">MINUTES</span>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <!-- Seconds -->
+                    <div class="time-block">
+                        <div class="time-val-wrapper">
+                            <span class="time-val" id="seconds">00</span>
+                        </div>
+                        <span class="time-label">SECONDS</span>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-fill" style="width: 100%;"></div>
+                    </div>
+                    <div class="progress-labels">
+                        <span>24:00:00 START</span>
+                        <span id="elapsed-percentage">100% REMAINING</span>
+                        <span>00:00:00 FINISH</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Datathon Info Cards / Guidelines Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Dataset Access</h3>
+                    <p>Clean raw datasets, engineer features, and explore data visual metrics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Model Development</h3>
+                    <p>Train deep neural networks or ensemble trees under strict time constraints.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Live Leaderboard</h3>
+                    <p>Submit predictions to score evaluate accuracy metrics before the 24h deadline.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 DATATHON ARENA. Blue & Yellow Dynamic Cyber Theme.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
