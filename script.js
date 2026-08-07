@@ -18,6 +18,26 @@ const secondsEl = document.getElementById('seconds');
 const progressFill = document.getElementById('progress-fill');
 const elapsedPercentageEl = document.getElementById('elapsed-percentage');
 
+// Target calculation: Start Today 11:00 AM to Next Day 11:00 AM
+function calculateRemainingSeconds() {
+    const now = new Date();
+    
+    // Set target to today at 11:00:00 AM
+    let target = new Date();
+    target.setHours(11, 0, 0, 0);
+    
+    // If the current time is already past today's 11:00 AM, the end target is tomorrow 11:00 AM
+    if (now >= target) {
+        target.setDate(target.getDate() + 1);
+    }
+    
+    const diffMs = target - now;
+    const diffSeconds = Math.max(0, Math.floor(diffMs / 1000));
+    
+    // Cap at 24 hours just in case
+    return Math.min(TOTAL_SECONDS, diffSeconds);
+}
+
 // Initialize Display
 function updateDisplay() {
     const hours = Math.floor(remainingSeconds / 3600);
@@ -48,6 +68,9 @@ function updateDisplay() {
 // Start / Pause Timer Toggle
 function startTimer() {
     if (isRunning) return;
+
+    remainingSeconds = calculateRemainingSeconds();
+    updateDisplay();
 
     isRunning = true;
     timerCard.classList.add('active');
